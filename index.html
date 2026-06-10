@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>医薬品接客チェックメーカー ～総合感冒薬編～</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <p class="eyebrow">新人登録販売者向け / 静的Webツール</p>
+      <h1>医薬品接客チェックメーカー <span>～総合感冒薬編～</span></h1>
+      <p class="lead">
+        総合感冒薬・風邪薬の接客時に、最初の聞き取りから次の確認、相談の目安までを整理します。
+      </p>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="control-panel" aria-labelledby="condition-title">
+      <div class="section-heading">
+        <h2 id="condition-title">条件を選ぶ</h2>
+        <p>条件を変えただけでは結果は変わりません。作成ボタンでチェック内容を更新します。</p>
+      </div>
+
+      <form id="checkForm">
+        <!-- 各inputのnameをそろえると、JavaScriptで選択内容をまとめて読み取りやすくなります。 -->
+        <fieldset>
+          <legend>1. 主な症状</legend>
+          <div class="option-grid">
+            <label><input type="radio" name="symptom" value="fever" checked> 発熱</label>
+            <label><input type="radio" name="symptom" value="cough"> 咳</label>
+            <label><input type="radio" name="symptom" value="nose"> 鼻水・鼻づまり</label>
+            <label><input type="radio" name="symptom" value="throat"> のど</label>
+            <label><input type="radio" name="symptom" value="pain"> 頭痛・関節痛</label>
+            <label><input type="radio" name="symptom" value="multiple"> 複数症状</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. 使用する人</legend>
+          <div class="option-grid">
+            <label><input type="radio" name="userType" value="adult" checked> 成人</label>
+            <label><input type="radio" name="userType" value="elderly"> 高齢者</label>
+            <label><input type="radio" name="userType" value="child"> 小児</label>
+            <label><input type="radio" name="userType" value="pregnancy"> 妊娠・授乳中</label>
+            <label><input type="radio" name="userType" value="proxy"> 家族が代理購入</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. 気になる条件</legend>
+          <div class="option-grid">
+            <label><input type="checkbox" name="concerns" value="drowsiness"> 眠気を避けたい</label>
+            <label><input type="checkbox" name="concerns" value="driving"> 運転予定あり</label>
+            <label><input type="checkbox" name="concerns" value="medicine"> 服用中の薬あり</label>
+            <label><input type="checkbox" name="concerns" value="condition"> 持病あり</label>
+            <label><input type="checkbox" name="concerns" value="allergy"> アレルギー歴あり</label>
+            <label><input type="checkbox" name="concerns" value="unknown"> よくわからない</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. 接客レベル</legend>
+          <div class="segmented">
+            <label><input type="radio" name="level" value="beginner" checked> 新人向け</label>
+            <label><input type="radio" name="level" value="normal"> 通常</label>
+            <label><input type="radio" name="level" value="senior"> 先輩確認用</label>
+          </div>
+        </fieldset>
+
+        <p id="changeNotice" class="change-notice" aria-live="polite"></p>
+
+        <div class="button-row">
+          <button type="submit" class="primary-button">この条件で接客確認フローを作成する</button>
+          <button type="button" id="copyButton" class="secondary-button">結果をコピーする</button>
+        </div>
+        <p id="copyNotice" class="copy-notice" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="result-panel" aria-labelledby="result-title">
+      <div class="section-heading">
+        <h2 id="result-title">接客確認フロー</h2>
+        <p id="conditionSummary">初期条件で作成しています。</p>
+      </div>
+      <div class="status-guide" aria-label="判断表示の見方">
+        <span class="status normal">通常確認を続ける</span>
+        <span class="status consult">先輩・薬剤師へ相談</span>
+        <span class="status visit">受診相談を案内</span>
+      </div>
+      <p class="status-note">判断表示は、販売可否を示すものではありません。次に確認する方向を整理するための目安です。</p>
+      <div id="result" class="result-content"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
