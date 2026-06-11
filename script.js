@@ -671,6 +671,13 @@ form.addEventListener("submit", (event) => {
   renderChecklist(getFormData());
   changeNotice.textContent = "";
   copyNotice.textContent = "";
+
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    document.querySelector(".result-panel").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
 });
 
 copyButton.addEventListener("click", async () => {

@@ -34,7 +34,7 @@ body {
 }
 
 .header-inner {
-  width: min(1160px, calc(100% - 32px));
+  width: min(1240px, calc(100% - 48px));
   margin: 0 auto;
   padding: 38px 0 30px;
 }
@@ -72,10 +72,10 @@ h1 span {
 
 .app-shell {
   display: grid;
-  grid-template-columns: minmax(300px, 0.86fr) minmax(0, 1.14fr);
+  grid-template-columns: 360px minmax(0, 1fr);
   gap: 24px;
-  width: min(1160px, calc(100% - 32px));
-  margin: 28px auto 48px;
+  width: min(1240px, calc(100% - 48px));
+  margin: 32px auto 56px;
   align-items: start;
 }
 
@@ -90,14 +90,17 @@ h1 span {
 .control-panel {
   /* 広い画面では、結果を読み進めても条件パネルが画面内に残るようにします。 */
   position: sticky;
-  top: 16px;
-  max-height: calc(100vh - 32px);
+  top: 24px;
+  width: 100%;
+  max-height: calc(100vh - 48px);
   overflow-y: auto;
   padding: 22px;
 }
 
 .result-panel {
-  padding: 24px;
+  min-width: 0;
+  width: 100%;
+  padding: 28px;
 }
 
 .section-heading {
@@ -251,7 +254,7 @@ button {
 }
 
 .check-section {
-  padding: 16px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: 8px;
 }
@@ -304,7 +307,7 @@ button {
 .memo-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 12px;
 }
 
 .memo-item {
@@ -332,6 +335,12 @@ button {
 @media (max-width: 900px) {
   .app-shell {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .control-panel,
+  .result-panel {
+    width: 100%;
   }
 
   .control-panel {
@@ -342,10 +351,106 @@ button {
   }
 }
 
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    line-height: 1.62;
+  }
+
+  .header-inner {
+    padding: 28px 0 22px;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .lead {
+    font-size: 0.96rem;
+  }
+
+  .app-shell {
+    gap: 16px;
+    margin: 20px auto 36px;
+  }
+
+  .control-panel,
+  .result-panel {
+    padding: 18px;
+  }
+
+  .section-heading {
+    margin-bottom: 14px;
+  }
+
+  fieldset {
+    margin-bottom: 16px;
+  }
+
+  legend {
+    margin-bottom: 8px;
+  }
+
+  .option-grid,
+  .segmented {
+    gap: 8px;
+  }
+
+  label {
+    min-height: 42px;
+    padding: 8px 10px;
+  }
+
+  .change-notice,
+  .copy-notice {
+    margin-bottom: 8px;
+  }
+
+  .status-note {
+    margin-bottom: 12px;
+    padding: 9px 10px;
+  }
+
+  .result-content {
+    gap: 12px;
+  }
+
+  .check-section {
+    padding: 14px;
+  }
+
+  .check-section h3 {
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+
+  .check-section li + li {
+    margin-top: 5px;
+  }
+
+  .branch-list {
+    gap: 8px;
+  }
+
+  .branch-card,
+  .memo-item {
+    padding: 11px;
+  }
+
+  .branch-top {
+    margin-bottom: 6px;
+  }
+
+  .memo-grid {
+    gap: 8px;
+  }
+}
+
 @media (max-width: 560px) {
   .header-inner,
   .app-shell {
-    width: min(100% - 20px, 1160px);
+    width: min(100% - 20px, 1240px);
   }
 
   .control-panel,
